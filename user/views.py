@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
+
 def user_login(request):
     if request.user.is_authenticated:
         return redirect("index")
@@ -14,11 +15,11 @@ def user_login(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect("index")
         else:
             messages.error(request, "Invalid Credentials!")
             return redirect("login")
-    return render(request, "users/login.html")
+    return render(request, "user/login.html")
 
 
 def user_register(request):
@@ -39,7 +40,7 @@ def user_register(request):
             return redirect("register")
         login(request, user)
         return redirect("index")
-    return render(request, "users/register.html")
+    return render(request, "user/register.html")
 
 
 @login_required(login_url="login")
