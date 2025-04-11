@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "user",
+    "jazzmin",
     "wellBite",
     "django.contrib.admin",
     "django.contrib.auth",

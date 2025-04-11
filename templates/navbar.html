@@ -1,0 +1,163 @@
+<nav class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Brand -->
+      <div class="flex items-center">
+        <a href="#" class="flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-teal-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M2 4.5A2.5 2.5 0 014.5 2h11a2.5 2.5 0 010 5h-11A2.5 2.5 0 012 4.5zM2.5 9a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM2.5 13.5a1 1 0 100 2 1 1 0 000-2z"
+            />
+            <path
+              d="M9.5 6.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM15.5 9a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"
+            />
+          </svg>
+          <span class="ml-2 text-xl font-bold text-gray-800">WellBite</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#" class="text-teal-600 font-medium">Home</a>
+        <a
+          href="#"
+          class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
+          >About</a
+        >
+        <a
+          href="#"
+          class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
+          >Contact</a
+        >
+      </div>
+
+      <!-- User Profile and Mobile Menu Icons -->
+      <div class="flex items-center space-x-4">
+        <!-- User Profile Dropdown -->
+        <div class="relative">
+          <a
+            href="#"
+            class="flex items-center text-gray-600 hover:text-teal-600 transition-colors duration-300"
+            data-dropdown-toggle
+          >
+            <!-- User Icon -->
+            <div
+              class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-teal-600"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <!-- Dropdown Arrow -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 ml-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+
+          <!-- Dropdown Menu (Hidden by default - would need JS to toggle) -->
+          <div
+            class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden"
+            data-dropdown-menu
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
+              >Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
+              >Saved Recipes</a
+            >
+            <div class="border-t border-gray-100"></div>
+            <a
+              href="{% url 'logout' %}"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
+              >Sign out</a
+            >
+          </div>
+        </div>
+
+        <!-- Mobile Menu - Simple Version without JS -->
+        <div class="md:hidden">
+          <a
+            href="#"
+            class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Links (Simplified without JS) -->
+    <div class="md:hidden pb-3 hidden">
+      <a href="#" class="block py-2 text-teal-600 font-medium">Home</a>
+      <a href="#" class="block py-2 text-gray-600">About</a>
+      <a href="#" class="block py-2 text-gray-600">Contact</a>
+    </div>
+  </div>
+</nav>
+<script>
+  // Get references to the dropdown button and menu
+  const userDropdownButton = document.querySelector("[data-dropdown-toggle]");
+  const userDropdownMenu = document.querySelector("[data-dropdown-menu]");
+
+  // Toggle dropdown when clicking the button
+  userDropdownButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    userDropdownMenu.classList.toggle("hidden");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    if (
+      !userDropdownButton.contains(e.target) &&
+      !userDropdownMenu.contains(e.target)
+    ) {
+      userDropdownMenu.classList.add("hidden");
+    }
+  });
+</script>
