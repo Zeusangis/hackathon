@@ -1,0 +1,84 @@
+{%extends "main.html"%} {%block content%}
+<div class="container mx-auto px-4 py-12">
+  <!-- Header Section -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+      <span
+        class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent"
+        >Choose Your University</span
+      >
+    </h1>
+    <p class="text-xl text-gray-600">
+      We'll customize your meal plan based on your campus dining options
+    </p>
+  </div>
+
+  <!-- Search Bar (Optional) -->
+  <div class="max-w-xl mx-auto mb-8">
+    <div class="relative">
+      <div
+        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <input
+        type="text"
+        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-full w-full pl-10 p-3 focus:ring-teal-500 focus:border-teal-500 outline-none"
+        placeholder="Find your school"
+        value="University of Cambridge"
+      />
+    </div>
+  </div>
+
+  <!-- University Card -->
+  <div class="max-w-xl mx-auto">
+    <a
+      href="#"
+      class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-l-8 border-teal-600"
+    >
+      <div class="p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">
+          University of Cambridge
+        </h2>
+        <div class="flex items-center text-gray-500">
+          <span class="inline-block mr-2">🇬🇧</span>
+          <span>Cambridge, United Kingdom</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Continue Button -->
+    <div class="text-center mt-8">
+      <a
+        href="#"
+        class="px-8 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md inline-flex items-center transition-colors duration-300"
+      >
+        Continue
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 ml-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content%}
