@@ -64,11 +64,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class BodyMassIndex(models.Model):
+    GENDER_CHOICES = [
+        ("M", "Male"),
+        ("F", "Female"),
+        ("O", "Other"),
+    ]
+
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     height = models.FloatField(_("Height (cm)"))
     weight = models.FloatField(_("Weight (kg)"))
+    age = models.IntegerField(_("Age"))
+    gender = models.CharField(_("Gender"), max_length=1, choices=GENDER_CHOICES)
     bmi = models.FloatField(_("BMI"), blank=True, null=True)
     date = models.DateTimeField(_("Date"), auto_now_add=True)
+    category = models.CharField(_("Category"), max_length=20, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if self.height and self.weight:

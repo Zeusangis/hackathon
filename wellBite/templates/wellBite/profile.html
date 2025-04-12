@@ -40,6 +40,7 @@
                 placeholder="Enter your full name"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 value="{{ name }}"
+                required
               />
 
             </div>
@@ -56,6 +57,7 @@
                 placeholder="Enter your email"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 value="{{ email }}"
+                required
               />
 
             </div>
@@ -76,6 +78,8 @@
                   min="50"
                   max="250"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  value="{{ height }}"
+                  required
                 />
               </div>
 
@@ -92,6 +96,8 @@
                   min="20"
                   max="300"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  value="{{ weight }}"
+                  required
                 />
               </div>
             </div>
@@ -111,6 +117,8 @@
                   min="13"
                   max="120"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  value="{{ age }}"
+                  required
                 />
               </div>
 
@@ -123,12 +131,12 @@
                   id="gender"
                   name="gender"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                  required
                 >
-                  <option value="" disabled selected>Select your gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="non-binary">Non-binary</option>
-                  <option value="prefer-not-to-say">Prefer not to say</option>
+                <option value="M" {% if gender == "M" %}selected{% endif %}>Male</option>
+                <option value="F" {% if gender == "F" %}selected{% endif %}>Female</option>
+                <option value="O" {% if gender == "O" %}selected{% endif %}>Other</option>
+                
                 </select>
               </div>
             </div>
@@ -170,10 +178,10 @@
               <div
                 class="w-16 h-16 rounded-full bg-teal-500 flex items-center justify-center mr-4"
               >
-                <span class="text-white text-xl font-bold">22.5</span>
+                <span class="text-white text-xl font-bold">{{ bmi|floatformat:2 }}</span>
               </div>
               <div>
-                <span class="font-semibold text-teal-500">Normal</span>
+                <span class="font-semibold text-teal-500">{{category}}</span>
                 <p class="text-gray-600 text-sm">Healthy weight range</p>
               </div>
             </div>
@@ -184,7 +192,7 @@
             <div class="relative h-4 bg-gray-200 rounded-full overflow-hidden">
               <div
                 class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-teal-400 to-yellow-400 to-red-500"
-                style="width: 45%"
+                style="width: {{bmi_percent}}%"
               >
                 <div class="absolute top-0 right-0 h-full w-1 bg-white"></div>
               </div>

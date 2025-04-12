@@ -1,3 +1,4 @@
 from django.contrib import admin
+from user.models import BodyMassIndex
 
-# Register your models here.
+admin.site.register(BodyMassIndex)
