@@ -1,0 +1,483 @@
+{% extends "main.html" %} {% block content %}
+<main class="bg-gray-100 p-4">
+  <div
+    class="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto nutrition-menu"
+  >
+    <!-- Date and Calorie Summary -->
+    <div class="flex justify-between items-center mb-4 border-b pb-3">
+      <h2 class="text-lg font-semibold text-gray-800">April 12, 2025</h2>
+      <div class="flex flex-col items-end">
+        <div class="flex items-center">
+          <span class="text-sm font-medium text-gray-600 mr-2"
+            >Daily Total:</span
+          >
+          <span class="text-lg font-bold text-emerald-600">1450 cal</span>
+        </div>
+        <!-- Calorie Progress Bar -->
+        <div class="w-48 h-2 bg-gray-200 rounded-full mt-1 overflow-hidden">
+          <div class="h-full bg-emerald-500 rounded-full w-[72.5%]"></div>
+        </div>
+        <div class="text-xs text-gray-500 mt-1">72.5% of daily target</div>
+      </div>
+    </div>
+
+    <!-- View Toggle -->
+    <div class="flex justify-end mb-3">
+      <button
+        class="text-xs px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 transition-colors"
+      >
+        <span>Detailed View</span>
+      </button>
+    </div>
+
+    <!-- Breakfast Section -->
+    <div class="meal-section mb-6">
+      <!-- Meal Header -->
+      <div
+        class="meal-header flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
+      >
+        <div class="flex items-center">
+          <svg
+            class="w-4 h-4 mr-2 text-gray-500 transform transition-transform"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+          <h3 class="text-md font-semibold text-gray-700 capitalize">
+            Breakfast
+          </h3>
+        </div>
+        <span
+          class="text-sm font-medium px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full"
+        >
+          450 cal
+        </span>
+      </div>
+
+      <!-- Meal Items -->
+      <div
+        class="meal-content grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden transition-all"
+      >
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Oatmeal with Berries"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Oatmeal with Berries
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >320 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">8g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">45g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">6g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">12g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Whole Grain
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Fruit
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Greek Yogurt"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Greek Yogurt
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >130 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">15g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">8g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">3g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">5g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Dairy
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Protein
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lunch Section -->
+    <div class="meal-section mb-6">
+      <!-- Meal Header -->
+      <div
+        class="meal-header flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
+      >
+        <div class="flex items-center">
+          <svg
+            class="w-4 h-4 mr-2 text-gray-500 transform transition-transform"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+          <h3 class="text-md font-semibold text-gray-700 capitalize">Lunch</h3>
+        </div>
+        <span
+          class="text-sm font-medium px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full"
+        >
+          550 cal
+        </span>
+      </div>
+
+      <!-- Meal Items -->
+      <div
+        class="meal-content grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden transition-all"
+      >
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Chicken Salad"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Chicken Salad
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >350 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">28g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">15g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">18g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">3g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Protein
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Vegetable
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Whole Grain Bread"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Whole Grain Bread
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >200 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">6g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">38g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">2g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">4g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Whole Grain
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Carbs
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dinner Section -->
+    <div class="meal-section">
+      <!-- Meal Header -->
+      <div
+        class="meal-header flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
+      >
+        <div class="flex items-center">
+          <svg
+            class="w-4 h-4 mr-2 text-gray-500 transform transition-transform"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+          <h3 class="text-md font-semibold text-gray-700 capitalize">Dinner</h3>
+        </div>
+        <span
+          class="text-sm font-medium px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full"
+        >
+          450 cal
+        </span>
+      </div>
+
+      <!-- Meal Items -->
+      <div
+        class="meal-content grid grid-cols-1 md:grid-cols-2 gap-4 overflow-hidden transition-all"
+      >
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Grilled Salmon"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Grilled Salmon
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >280 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">32g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">0g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">16g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">0g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Protein
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Seafood
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all"
+        >
+          <!-- Food Image -->
+          <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+            <img
+              src="/placeholder.svg?height=96&width=96"
+              alt="Steamed Vegetables"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+          </div>
+
+          <!-- Food Details -->
+          <div class="flex-1 p-3">
+            <div class="flex justify-between items-start">
+              <h4 class="text-sm font-medium text-gray-800 mb-1">
+                Steamed Vegetables
+              </h4>
+              <span class="text-xs font-bold text-emerald-600 ml-2"
+                >170 cal</span
+              >
+            </div>
+
+            <!-- Nutrition Facts -->
+            <div class="grid grid-cols-4 gap-1 mt-2">
+              <div class="text-xs">
+                <span class="block text-gray-500">Protein</span>
+                <span class="font-medium text-gray-700">4g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Carbs</span>
+                <span class="font-medium text-gray-700">25g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Fat</span>
+                <span class="font-medium text-gray-700">6g</span>
+              </div>
+              <div class="text-xs">
+                <span class="block text-gray-500">Sugar</span>
+                <span class="font-medium text-gray-700">8g</span>
+              </div>
+            </div>
+
+            <!-- Food Type Tags -->
+            <div class="mt-2">
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Vegetable
+              </span>
+              <span
+                class="inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer"
+              >
+                Low Carb
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

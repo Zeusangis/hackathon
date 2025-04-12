@@ -172,3 +172,8 @@ def profile(request):
     }
 
     return render(request, "wellBite/profile.html", context)
+
+
+@login_required(login_url="login")
+def nutrition(request):
+    return render(request, "wellBite/nutrition.html")

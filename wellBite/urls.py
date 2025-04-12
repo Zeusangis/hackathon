@@ -8,4 +8,5 @@ urlpatterns = [
     path("submit_choices/", submit_choices, name="submit_choices"),
     path("about/", about, name="about"),
     path("profile/", profile, name="profile"),
+    path("nutrition/", nutrition, name="nutrition"),
 ]
