@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser as User
 from django.db import IntegrityError
@@ -46,4 +47,4 @@ def user_register(request):
 @login_required(login_url="login")
 def user_logout(request):
     logout(request)
-    return redirect("index")
+    return redirect(reverse("login"))

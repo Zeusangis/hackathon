@@ -1,0 +1,38 @@
+<div class="relative flex justify-between items-center mb-10">
+  <!-- Line behind the steps -->
+  <div
+    class="absolute top-1/2 left-0 w-full h-1 bg-gray-300 transform -translate-y-1/2 z-0"
+  ></div>
+  <!-- Line progress -->
+  <div
+    id="line-progress"
+    class="absolute top-1/2 left-0 h-1 bg-blue-600 z-10 transition-all duration-300"
+    style="width: 0%; transform: translateY(-50%)"
+  ></div>
+
+  <!-- Step Circles -->
+  <div class="relative z-20">
+    <div
+      id="circle1"
+      class="w-10 h-10 rounded-full flex items-center justify-center bg-blue-600 text-white font-bold"
+    >
+      1
+    </div>
+  </div>
+  <div class="relative z-20">
+    <div
+      id="circle2"
+      class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300 text-gray-700 font-bold"
+    >
+      2
+    </div>
+  </div>
+  <div class="relative z-20">
+    <div
+      id="circle3"
+      class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300 text-gray-700 font-bold"
+    >
+      3
+    </div>
+  </div>
+</div>
