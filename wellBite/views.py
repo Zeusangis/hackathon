@@ -48,7 +48,23 @@ def submit_choices(request):
     return render(request, "wellBite/index.html")
 
 
-
 @login_required(login_url="login")
 def about(request):
     return render(request, "wellBite/about.html")
+
+
+@login_required(login_url="login")
+def profile(request):
+    user = request.user
+    if user.is_authenticated:
+        name = user.full_name
+        email = user.email
+        print("User is authenticated.")
+    else:
+        print("User is not authenticated.")
+    context = {
+        "name": name,
+        "email": email,
+    }
+
+    return render(request, "wellBite/profile.html", context)

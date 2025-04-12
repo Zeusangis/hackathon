@@ -6,7 +6,6 @@ urlpatterns = [
     path("choose/", choose, name="choose"),
     path("get_university/", get_university, name="get_university"),
     path("submit_choices/", submit_choices, name="submit_choices"),
-    path("about/",about,name="about")
+    path("about/", about, name="about"),
+    path("profile/", profile, name="profile"),
 ]
-
-

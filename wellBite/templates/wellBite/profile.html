@@ -1,3 +1,4 @@
+{%extends "main.html" %} {% block content %}
 <main class="bg-gray-50 font-sans">
   <div class="container mx-auto px-4 py-8">
     <!-- User Profile Card -->
@@ -30,14 +31,34 @@
               <label for="fullName" class="block text-gray-700 font-medium mb-2"
                 >Full Name</label
               >
+              
               <input
                 type="text"
                 id="fullName"
                 name="fullName"
                 placeholder="Enter your full name"
                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                value="{{ name }}"
               />
+
             </div>
+
+            <div class="mb-4">
+              <label for="email" class="block text-gray-700 font-medium mb-2"
+                >Email</label
+              >
+              
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                value="{{ email }}"
+              />
+
+            </div>
+
 
             <!-- Height and Weight (Side by Side on larger screens) -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -112,161 +133,11 @@
             </div>
           </div>
 
-          <!-- Dietary Preferences Section -->
-          <div class="mb-8">
-            <h3
-              class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200"
-            >
-              Dietary Preferences
-            </h3>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              <!-- Vegan Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="vegan"
-                  name="vegan"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="vegan" class="ml-2 text-gray-700">Vegan</label>
-              </div>
-
-              <!-- Vegetarian Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="vegetarian"
-                  name="vegetarian"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="vegetarian" class="ml-2 text-gray-700"
-                  >Vegetarian</label
-                >
-              </div>
-
-              <!-- Gluten-Free Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="glutenFree"
-                  name="glutenFree"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="glutenFree" class="ml-2 text-gray-700"
-                  >Gluten-Free</label
-                >
-              </div>
-
-              <!-- Lactose-Free Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="lactoseFree"
-                  name="lactoseFree"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="lactoseFree" class="ml-2 text-gray-700"
-                  >Lactose-Free</label
-                >
-              </div>
-
-              <!-- Nut-Free Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="nutFree"
-                  name="nutFree"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="nutFree" class="ml-2 text-gray-700">Nut-Free</label>
-              </div>
-
-              <!-- Low-Carb Option -->
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="lowCarb"
-                  name="lowCarb"
-                  class="h-5 w-5 text-teal-500 rounded focus:ring-teal-400"
-                />
-                <label for="lowCarb" class="ml-2 text-gray-700">Low-Carb</label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Fitness Goals Section -->
-          <div class="mb-8">
-            <h3
-              class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200"
-            >
-              Fitness Goals
-            </h3>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Bulking Option -->
-              <div class="flex items-center">
-                <input
-                  type="radio"
-                  id="bulking"
-                  name="fitnessGoal"
-                  value="bulking"
-                  class="h-5 w-5 text-teal-500 focus:ring-teal-400"
-                />
-                <label for="bulking" class="ml-2 text-gray-700"
-                  >Bulking (Muscle Gain)</label
-                >
-              </div>
-
-              <!-- Cutting Option -->
-              <div class="flex items-center">
-                <input
-                  type="radio"
-                  id="cutting"
-                  name="fitnessGoal"
-                  value="cutting"
-                  class="h-5 w-5 text-teal-500 focus:ring-teal-400"
-                />
-                <label for="cutting" class="ml-2 text-gray-700"
-                  >Cutting (Fat Loss)</label
-                >
-              </div>
-
-              <!-- Maintenance Option -->
-              <div class="flex items-center">
-                <input
-                  type="radio"
-                  id="maintenance"
-                  name="fitnessGoal"
-                  value="maintenance"
-                  class="h-5 w-5 text-teal-500 focus:ring-teal-400"
-                />
-                <label for="maintenance" class="ml-2 text-gray-700"
-                  >Maintenance</label
-                >
-              </div>
-
-              <!-- Performance Option -->
-              <div class="flex items-center">
-                <input
-                  type="radio"
-                  id="performance"
-                  name="fitnessGoal"
-                  value="performance"
-                  class="h-5 w-5 text-teal-500 focus:ring-teal-400"
-                />
-                <label for="performance" class="ml-2 text-gray-700"
-                  >Performance</label
-                >
-              </div>
-            </div>
-          </div>
-
           <!-- Calculate Button -->
           <div class="text-center">
             <button
               type="button"
-              class="bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-400 text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition duration-300"
+              class="bg-gradient-to-r bg-teal-500 text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition duration-300"
             >
               Calculate BMI & Get Recommendations
             </button>
@@ -335,206 +206,8 @@
           </div>
         </div>
 
-        <!-- Daily Calorie Needs -->
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-          <h4 class="text-lg font-semibold text-gray-800 mb-4">
-            Estimated Daily Calorie Needs
-          </h4>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 bg-gray-50 rounded-lg text-center">
-              <p class="text-gray-600 text-sm mb-1">Maintenance</p>
-              <p class="text-2xl font-bold text-gray-800">2,200</p>
-              <p class="text-gray-600 text-xs">calories/day</p>
-            </div>
-
-            <div
-              class="p-4 bg-teal-50 rounded-lg text-center border-2 border-teal-500"
-            >
-              <p class="text-teal-600 text-sm mb-1">Bulking</p>
-              <p class="text-2xl font-bold text-teal-600">2,700</p>
-              <p class="text-teal-600 text-xs">calories/day</p>
-            </div>
-
-            <div class="p-4 bg-gray-50 rounded-lg text-center">
-              <p class="text-gray-600 text-sm mb-1">Cutting</p>
-              <p class="text-2xl font-bold text-gray-800">1,700</p>
-              <p class="text-gray-600 text-xs">calories/day</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Food Recommendations Section -->
-      <div class="p-6 border-t border-gray-200">
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-xl font-semibold text-gray-800">
-            Recommended Foods for You
-          </h3>
-          <span
-            class="px-3 py-1 bg-teal-100 text-teal-800 text-sm font-medium rounded-full"
-            >Vegan + Bulking</span
-          >
-        </div>
-
-        <!-- Food Recommendations List -->
-        <div class="space-y-4">
-          <!-- Food Item 1 -->
-          <div
-            class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300"
-          >
-            <div class="flex justify-between">
-              <div>
-                <h4 class="font-semibold text-gray-800">
-                  Protein-Packed Quinoa Bowl
-                </h4>
-                <p class="text-gray-600 text-sm mt-1">
-                  High in protein and complex carbs, perfect for muscle building
-                </p>
-
-                <div class="flex mt-2">
-                  <span
-                    class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full mr-2"
-                    >Vegan</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
-                    >High Protein</span
-                  >
-                </div>
-              </div>
-
-              <div class="text-right">
-                <div class="text-gray-800 font-semibold">520 kcal</div>
-                <div class="text-gray-600 text-sm">24g protein</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Food Item 2 -->
-          <div
-            class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300"
-          >
-            <div class="flex justify-between">
-              <div>
-                <h4 class="font-semibold text-gray-800">
-                  Lentil and Sweet Potato Curry
-                </h4>
-                <p class="text-gray-600 text-sm mt-1">
-                  Rich in plant protein and slow-release carbohydrates
-                </p>
-
-                <div class="flex mt-2">
-                  <span
-                    class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full mr-2"
-                    >Vegan</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full"
-                    >High Calorie</span
-                  >
-                </div>
-              </div>
-
-              <div class="text-right">
-                <div class="text-gray-800 font-semibold">650 kcal</div>
-                <div class="text-gray-600 text-sm">22g protein</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Food Item 3 -->
-          <div
-            class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow duration-300"
-          >
-            <div class="flex justify-between">
-              <div>
-                <h4 class="font-semibold text-gray-800">
-                  Tofu and Vegetable Stir Fry
-                </h4>
-                <p class="text-gray-600 text-sm mt-1">
-                  Complete protein source with essential amino acids
-                </p>
-
-                <div class="flex mt-2">
-                  <span
-                    class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full mr-2"
-                    >Vegan</span
-                  >
-                  <span
-                    class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full"
-                    >Low Fat</span
-                  >
-                </div>
-              </div>
-
-              <div class="text-right">
-                <div class="text-gray-800 font-semibold">480 kcal</div>
-                <div class="text-gray-600 text-sm">28g protein</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Error State (Hidden by default) -->
-          <div class="hidden bg-red-50 rounded-lg p-4 text-center">
-            <svg
-              class="w-8 h-8 text-red-400 mx-auto mb-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <p class="text-red-800">
-              Unable to load food recommendations. Please try again later.
-            </p>
-          </div>
-
-          <!-- Loading State (Hidden by default) -->
-          <div class="hidden bg-white rounded-lg shadow-sm p-4 animate-pulse">
-            <div class="flex justify-between">
-              <div class="w-2/3">
-                <div class="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                <div class="h-4 bg-gray-200 rounded w-1/2"></div>
-              </div>
-              <div class="w-1/4">
-                <div class="h-5 bg-gray-200 rounded w-full mb-2"></div>
-                <div class="h-4 bg-gray-200 rounded w-2/3"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- View All Button -->
-        <div class="mt-6 text-center">
-          <button
-            class="text-teal-500 font-semibold hover:text-teal-600 transition-colors duration-300 flex items-center mx-auto"
-          >
-            View all recommendations
-            <svg
-              class="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </main>
+{% endblock content %}
