@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from user.models import BodyMassIndex
 
 
 @login_required(login_url="login")
@@ -66,5 +67,15 @@ def profile(request):
         "name": name,
         "email": email,
     }
+
+    if request.method == "POST":
+        print("POST")
+        new_name = request.POST.get("fullName")
+        new_email = request.POST.get("email")
+        height = request.POST.get("height")
+        weight = request.POST.get("weight")
+        age = request.POST.get("age")
+        gender = request.POST.get("gender")
+        print(new_name)
 
     return render(request, "wellBite/profile.html", context)

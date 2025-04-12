@@ -17,7 +17,8 @@
 
       <!-- Profile Form -->
       <div class="p-6">
-        <form>
+        <form method="POST">
+          {% csrf_token %}
           <!-- Personal Information Section -->
           <div class="mb-8">
             <h3
@@ -136,11 +137,11 @@
           <!-- Calculate Button -->
           <div class="text-center">
             <button
-              type="button"
+              type="submit"
               class="bg-gradient-to-r bg-teal-500 text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition duration-300"
             >
-              Calculate BMI & Get Recommendations
-            </button>
+            Save Changes
+                      </button>
           </div>
         </form>
       </div>

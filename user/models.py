@@ -61,3 +61,25 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = _("User")
         verbose_name_plural = _("Users")
         ordering = ["-date_joined"]
+
+
+class BodyMassIndex(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    height = models.FloatField(_("Height (cm)"))
+    weight = models.FloatField(_("Weight (kg)"))
+    bmi = models.FloatField(_("BMI"), blank=True, null=True)
+    date = models.DateTimeField(_("Date"), auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.height and self.weight:
+            height_m = self.height / 100
+            self.bmi = self.weight / (height_m**2)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.full_name} - {self.bmi}"
+
+    class Meta:
+        verbose_name = _("Body Mass Index")
+        verbose_name_plural = _("Body Mass Indexes")
+        ordering = ["-date"]
