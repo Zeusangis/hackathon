@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# import requests
+import requests
 
 
 def index(request):
@@ -8,13 +7,25 @@ def index(request):
 
 
 def choose(request):
-    # university_api = "http://universities.hipolabs.com"
-    # if request.method == "POST":
-    #     query = request.POST.get("query")
-    #     if query:
-    #         response = requests.get(f"{university_api}/search?name={query}")
-    #         universities = response.json()
-    #         return render(
-    #             request, "wellBite/choose.html", {"universities": universities}
-    #         )
-    return render(request, "wellBite/choose.html")
+    university_api = "http://universities.hipolabs.com"
+    universities = []
+
+    if request.method == "POST":
+        query = request.POST.get("query")
+        if query:
+            try:
+                response = requests.get(f"{university_api}/search?name={query}")
+                if response.status_code == 200:
+                    universities = response.json()
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching data: {e}")
+    else:
+        # Default search if no query provided
+        try:
+            response = requests.get(f"{university_api}/search?name=university")
+            if response.status_code == 200:
+                universities = response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching data: {e}")
+
+    return render(request, "wellBite/choose.html", {"universities": universities})
