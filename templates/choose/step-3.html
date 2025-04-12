@@ -1,0 +1,298 @@
+<main
+  class="min-h-screen bg-gradient-to-br from-white via-blue-50 to-purple-100"
+>
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8 sm:py-12">
+    <!-- Header Section -->
+    <div class="text-center mb-8 sm:mb-12">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 px-2">
+        <span
+          class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent"
+          >Meal Plans</span
+        >
+      </h1>
+      <p class="text-lg sm:text-xl text-gray-600 px-2">
+        Select your preferred eating style to customize your meal
+        recommendations
+      </p>
+    </div>
+
+    <!-- Meal Plan Options Grid -->
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 px-1 sm:px-2">
+        <!-- Bulking Option -->
+        <div class="meal-option" data-option="bulking">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-4 sm:p-6 flex flex-col items-center">
+              <div
+                class="w-14 h-14 sm:w-16 sm:h-16 bg-red-100 rounded-full flex items-center justify-center mb-3 sm:mb-4"
+              >
+                <span class="text-xl sm:text-2xl">💪</span>
+              </div>
+              <h3
+                class="text-base sm:text-lg font-bold text-center mb-1 sm:mb-2"
+              >
+                Bulking
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-500 text-center">
+                Higher calories to support muscle growth
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-3 sm:mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 sm:h-4 sm:w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Normal/Maintenance Option -->
+        <div class="meal-option" data-option="normal">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-4 sm:p-6 flex flex-col items-center">
+              <div
+                class="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mb-3 sm:mb-4"
+              >
+                <span class="text-xl sm:text-2xl">⚖️</span>
+              </div>
+              <h3
+                class="text-base sm:text-lg font-bold text-center mb-1 sm:mb-2"
+              >
+                Normal
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-500 text-center">
+                Balanced nutrition to maintain current weight
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-3 sm:mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 sm:h-4 sm:w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cutting Option -->
+        <div class="meal-option" data-option="cutting">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-4 sm:p-6 flex flex-col items-center">
+              <div
+                class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3 sm:mb-4"
+              >
+                <span class="text-xl sm:text-2xl">✂️</span>
+              </div>
+              <h3
+                class="text-base sm:text-lg font-bold text-center mb-1 sm:mb-2"
+              >
+                Cutting
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-500 text-center">
+                Calorie deficit to reduce body fat
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-3 sm:mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 sm:h-4 sm:w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Option -->
+        <div class="meal-option" data-option="performance">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-4 sm:p-6 flex flex-col items-center">
+              <div
+                class="w-14 h-14 sm:w-16 sm:h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-3 sm:mb-4"
+              >
+                <span class="text-xl sm:text-2xl">🏆</span>
+              </div>
+              <h3
+                class="text-base sm:text-lg font-bold text-center mb-1 sm:mb-2"
+              >
+                Performance
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-500 text-center">
+                Optimized nutrition for athletic performance
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% comment %}
+<script>
+  // Meal plan selection
+  const mealOptions = document.querySelectorAll(".meal-option");
+  const selectedOptions = [];
+  const selectedOptionsDisplay = document.getElementById(
+    "selected-options-display"
+  );
+  const selectedOptionsText = document.getElementById("selected-options-text");
+
+  mealOptions.forEach((option) => {
+    option.addEventListener("click", function () {
+      const optionId = this.getAttribute("data-option");
+      const optionName = this.querySelector("h3").textContent;
+      const card = this.querySelector("div");
+      const indicator = this.querySelector(".selected-indicator");
+
+      // Toggle selected state
+      card.classList.toggle("border-teal-500");
+      card.classList.toggle("border-transparent");
+      indicator.classList.toggle("hidden");
+
+      // Add background color when selected
+      card.classList.toggle("bg-teal-50");
+
+      // Update selected options array
+      const index = selectedOptions.findIndex((item) => item.id === optionId);
+      if (index === -1) {
+        selectedOptions.push({ id: optionId, name: optionName });
+      } else {
+        selectedOptions.splice(index, 1);
+      }
+
+      console.log("Selected meal plans:", selectedOptions);
+    });
+  });
+
+  // Handle responsive behavior
+  function handleResize() {
+    const isMobile = window.innerWidth < 640;
+    // You can add additional responsive adjustments here if needed
+  }
+
+  // Initial call and event listener
+  handleResize();
+  window.addEventListener("resize", handleResize);
+</script>
+{% endcomment %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const mealOptions = document.querySelectorAll(".meal-option");
+    const selectedOptionsDisplay = document.getElementById("selectedOptions");
+    const selectedOptionsText = document.getElementById("selectedOptionsText");
+
+    let selectedOption = null;
+
+    mealOptions.forEach((option) => {
+      const card = option.querySelector(".bg-white.rounded-lg.shadow-md");
+      const indicator = option.querySelector(".selected-indicator");
+      const optionId = option.getAttribute("data-option");
+      const optionName = option.querySelector("h3").textContent;
+
+      card.addEventListener("click", function () {
+        // If already selected, do nothing
+        if (selectedOption === option) return;
+
+        // Deselect previous selection
+        if (selectedOption) {
+          const prevCard = selectedOption.querySelector(
+            ".bg-white.rounded-lg.shadow-md"
+          );
+          const prevIndicator = selectedOption.querySelector(
+            ".selected-indicator"
+          );
+
+          prevCard.classList.remove("border-teal-500", "bg-teal-50");
+          prevCard.classList.add("border-transparent");
+          prevIndicator.classList.add("hidden");
+        }
+
+        // Select the new option
+        card.classList.remove("border-transparent");
+        card.classList.add("border-teal-500", "bg-teal-50");
+        indicator.classList.remove("hidden");
+
+        selectedOption = option;
+
+        // Update the display
+        selectedOptionsText.textContent = optionName;
+        selectedOptionsDisplay.classList.remove("hidden");
+
+        console.log("Selected meal plan:", optionName);
+      });
+    });
+  });
+</script>

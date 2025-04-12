@@ -1,0 +1,293 @@
+<main
+  class="min-h-screen bg-gradient-to-br from-white via-blue-50 to-purple-100"
+>
+  <!-- Main Content -->
+  <div class="container md:mx-auto md:px-4 md:py-12">
+    <!-- Header Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        <span
+          class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent"
+          >Dietary Preferences</span
+        >
+      </h1>
+      <p class="text-xl text-gray-600">
+        Select all that apply to customize your meal recommendations
+      </p>
+    </div>
+
+    <!-- Dietary Options Grid -->
+    <div class="max-w-3xl mx-auto">
+      <div
+        class="grid grid-cols-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <!-- Vegan Option -->
+        <div class="dietary-option" data-option="vegan">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🥦</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Vegan</h3>
+              <p class="text-sm text-gray-500 text-center">
+                No animal products
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vegetarian Option -->
+        <div class="dietary-option" data-option="vegetarian">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🥗</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Vegetarian</h3>
+              <p class="text-sm text-gray-500 text-center">No meat or fish</p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Non-Vegetarian Option -->
+        <div class="dietary-option" data-option="non-vegetarian">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🍗</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Non-Vegetarian</h3>
+              <p class="text-sm text-gray-500 text-center">All food types</p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gluten-Free Option -->
+        <div class="dietary-option" data-option="gluten-free">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🌾</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Gluten-Free</h3>
+              <p class="text-sm text-gray-500 text-center">
+                No wheat, barley or rye
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lactose-Free Option -->
+        <div class="dietary-option" data-option="lactose-free">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🥛</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Lactose-Free</h3>
+              <p class="text-sm text-gray-500 text-center">No dairy products</p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nut-Free Option -->
+        <div class="dietary-option" data-option="nut-free">
+          <div
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 border-transparent hover:border-teal-200"
+          >
+            <div class="p-6 flex flex-col items-center">
+              <div
+                class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+              >
+                <span class="text-2xl">🥜</span>
+              </div>
+              <h3 class="text-lg font-bold text-center mb-2">Nut-Free</h3>
+              <p class="text-sm text-gray-500 text-center">
+                No nuts or nut products
+              </p>
+              <!-- Selected Indicator (Hidden by default) -->
+              <div class="mt-4 hidden selected-indicator">
+                <div
+                  class="bg-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Dietary options selection
+  const dietaryOptions = document.querySelectorAll(".dietary-option");
+  const selectedOptions = [];
+
+  dietaryOptions.forEach((option) => {
+    option.addEventListener("click", function () {
+      const optionId = this.getAttribute("data-option");
+      const card = this.querySelector("div");
+      const indicator = this.querySelector(".selected-indicator");
+
+      // Toggle selected state
+      card.classList.toggle("border-teal-500");
+      card.classList.toggle("border-transparent");
+      indicator.classList.toggle("hidden");
+
+      // Add background color when selected
+      card.classList.toggle("bg-teal-50");
+
+      // Update selected options array
+      const index = selectedOptions.indexOf(optionId);
+      if (index === -1) {
+        selectedOptions.push(optionId);
+      } else {
+        selectedOptions.splice(index, 1);
+      }
+      document.querySelector("#mealPlanInput").value = optionId;
+
+      console.log("Selected options:", selectedOptions);
+    });
+  });
+</script>

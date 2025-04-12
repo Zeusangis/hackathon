@@ -1,93 +1,45 @@
 {% extends "main.html" %} {% block content %}
-<div class="bg-gray-100 min-h-screen py-10">
-  <div class="w-1/2 mx-auto">
-    <!-- Progress Steps -->
-    {%include "choose/progress.html"%}
-    <!-- Step Content -->
-    <div id="step1" class="px-6 py-8 bg-white rounded shadow-md">
-      {% include "choose/uni_heading.html" %}
-      <div>
-        <form action="" method="post" class="max-w-xl mx-auto mb-8">
-          {% csrf_token %}
-          <div class="flex">
-            <div class="relative flex-grow">
-              <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-              >
-                {%include "svg/search.html"%}
-              </div>
-              <input
-                name="query"
-                type="text"
-                class="bg-white border border-gray-300 text-gray-900 text-sm rounded-l-full w-full pl-10 p-3 focus:ring-teal-500 focus:border-teal-500 outline-none"
-                placeholder="Find your school"
-                value="University of Cambridge"
-              />
-            </div>
-            <button
-              type="submit"
-              class="bg-teal-500 hover:bg-teal-600 text-white font-medium px-6 rounded-r-full transition-colors duration-300 flex items-center justify-center"
-            >
-              Search
-            </button>
-          </div>
-        </form>
+<form id="multiStepForm" method="POST" action="{% url 'submit_choices' %}">
+  {% csrf_token %}
+  <div class="bg-gray-100 min-h-screen py-10">
+    <div class="w-1/2 mx-auto">
+      <!-- Progress Steps -->
+      {%include "choose/progress.html"%}
+      <!-- Step Content -->
+      <div id="step1" class="px-6 py-8 bg-white rounded shadow-md">
+        {%include "choose/step-1.html"%}
+      </div>
+      <div id="step2" class="px-6 py-8 bg-white rounded shadow-md hidden">
+        {% include "choose/step-2.html" %}
+      </div>
+      <div id="step3" class="px-6 py-8 bg-white rounded shadow-md hidden">
+        {%include "choose/step-3.html"%}
+      </div>
 
-        <div class="max-w-xl mx-auto">
-          <a
-            href="#"
-            class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-l-8 border-teal-600"
-          >
-            <div class="p-6">
-              <h2 class="text-xl font-bold text-gray-800 mb-1">
-                University of Cambridge
-              </h2>
-              <div class="flex items-center text-gray-500">
-                <span class="inline-block mr-2">🇬🇧</span>
-                <span>Cambridge, United Kingdom</span>
-              </div>
-            </div>
-          </a>
-
-          <div class="text-center mt-8">
-            <a
-              href="#"
-              class="px-8 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md inline-flex items-center transition-colors duration-300"
-            >
-              Continue {% include "svg/arrow-right.html" %}
-            </a>
-          </div>
-        </div>
+      <!-- Navigation Buttons -->
+      <div class="mt-8 flex justify-between">
+        <button
+          id="prevBtn"
+          class="bg-gray-400 text-white px-4 py-2 rounded disabled:opacity-50"
+          disabled
+        >
+          Previous
+        </button>
+        <button id="nextBtn" class="bg-teal-500 text-white px-4 py-2 rounded">
+          Next
+        </button>
       </div>
     </div>
-    <div id="step2" class="px-6 py-8 bg-white rounded shadow-md hidden">
-      <h2 class="text-xl font-semibold mb-4">Step 2</h2>
-      <p>More details here...</p>
-    </div>
-    <div id="step3" class="px-6 py-8 bg-white rounded shadow-md hidden">
-      <h2 class="text-xl font-semibold mb-4">Step 3</h2>
-      <p>Final confirmation here...</p>
-    </div>
-
-    <!-- Navigation Buttons -->
-    <div class="mt-8 flex justify-between">
-      <button
-        id="prevBtn"
-        class="bg-gray-400 text-white px-4 py-2 rounded disabled:opacity-50"
-        disabled
-      >
-        Previous
-      </button>
-      <button id="nextBtn" class="bg-blue-600 text-white px-4 py-2 rounded">
-        Next
-      </button>
-    </div>
   </div>
-</div>
+  <input type="hidden" name="university_name" id="universityNameInput" />
+  <input type="hidden" name="university_country" id="universityCountryInput" />
+  <input type="hidden" name="meal_plan" id="mealPlanInput" />
+</form>
 
 <script>
   const steps = ["step1", "step2", "step3"];
   const circles = ["circle1", "circle2", "circle3"];
+  const form = document.getElementById("multiStepForm");
   let currentStep = 0;
 
   function updateUI() {
@@ -101,10 +53,10 @@
       const el = document.getElementById(id);
       if (idx <= currentStep) {
         el.classList.remove("bg-gray-300", "text-gray-700");
-        el.classList.add("bg-blue-600", "text-white");
+        el.classList.add("bg-teal-500", "text-white");
       } else {
         el.classList.add("bg-gray-300", "text-gray-700");
-        el.classList.remove("bg-blue-600", "text-white");
+        el.classList.remove("bg-teal-500", "text-white");
       }
     });
 
@@ -121,7 +73,7 @@
       currentStep++;
       updateUI();
     } else {
-      alert("Form submitted!");
+      form.submit();
     }
   });
 
@@ -134,4 +86,5 @@
 
   updateUI();
 </script>
+
 {% endblock content %}

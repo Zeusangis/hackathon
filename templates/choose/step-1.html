@@ -1,0 +1,132 @@
+{% include "./uni_heading.html" %}
+<div>
+  <form id="university" class="max-w-xl mx-auto mb-8">
+    {% csrf_token %}
+    <div class="flex">
+      <div class="relative flex-grow">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          {%include "svg/search.html"%}
+        </div>
+        <input
+          name="query"
+          type="text"
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-l-full w-full pl-10 p-3 focus:ring-teal-500 focus:border-teal-500 outline-none"
+          placeholder="Find your school"
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-teal-500 hover:bg-teal-600 text-white font-medium px-6 rounded-r-full transition-colors duration-300 flex items-center justify-center"
+      >
+        Search
+      </button>
+    </div>
+  </form>
+
+  {% comment %}
+  <div class="max-w-xl mx-auto">
+    <a
+      href="#"
+      class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-l-8 border-teal-600"
+    >
+      <div class="p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-1">
+          University of Cambridge
+        </h2>
+        <div class="flex items-center text-gray-500">
+          <span class="inline-block mr-2">🇬🇧</span>
+          <span>Cambridge, United Kingdom</span>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endcomment %}
+  <div id="results" class="max-w-xl mx-auto h-[500px] overflow-y-scroll"></div>
+  <div
+    id="selected-info"
+    class="mt-4 text-center text-gray-600 font-medium"
+  ></div>
+</div>
+<script>
+  const searchInput = document.querySelector('input[name="query"]');
+  const searchButton = document.querySelector(
+    "#university button[type=submit]"
+  );
+  const resultsContainer = document.querySelector("#results");
+
+  let selectedUniversity = null;
+
+  searchButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const query = searchInput.value;
+
+    if (!query) return;
+
+    try {
+      const response = await fetch(
+        `/get_university/?query=${encodeURIComponent(query)}`
+      );
+      const universities = await response.json();
+
+      resultsContainer.innerHTML = "";
+
+      if (universities.length === 0) {
+        resultsContainer.innerHTML = "<p>No universities found.</p>";
+        return;
+      }
+
+      universities.forEach((university) => {
+        const card = document.createElement("a");
+        card.href = "#";
+        card.className =
+          "university-card block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-l-8 border-teal-600 mb-4";
+        card.dataset.name = university.name;
+        card.dataset.country = university.country;
+
+        card.innerHTML = `
+              <div class="p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-1">${university.name}</h2>
+                <div class="flex items-center text-gray-500">
+                  <span class="inline-block mr-2">🌍</span>
+                  <span>${university.country}</span>
+                </div>
+              </div>
+            `;
+
+        // Click handler to select this card
+        card.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // Remove selection from all cards
+          document.querySelectorAll(".university-card").forEach((c) => {
+            c.classList.remove("bg-teal-400");
+          });
+
+          // Highlight the selected one
+          card.classList.add("bg-teal-400");
+
+          // Store the selected university info
+          selectedUniversity = {
+            name: university.name,
+            country: university.country,
+          };
+          // Inside card.addEventListener("click", ...)
+          document.querySelector("#universityNameInput").value =
+            university.name;
+          document.querySelector("#universityCountryInput").value =
+            university.country;
+
+          console.log("Selected university:", selectedUniversity);
+        });
+
+        resultsContainer.appendChild(card);
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      resultsContainer.innerHTML =
+        "<p>Something went wrong while fetching universities.</p>";
+    }
+  });
+</script>
