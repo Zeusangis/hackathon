@@ -19,21 +19,27 @@
       <!-- Navigation Buttons -->
       <div class="mt-8 flex justify-between">
         <button
+          type="button"
           id="prevBtn"
           class="bg-gray-400 text-white px-4 py-2 rounded disabled:opacity-50"
           disabled
         >
           Previous
         </button>
-        <button id="nextBtn" class="bg-teal-500 text-white px-4 py-2 rounded">
+        <button
+          type="button"
+          id="nextBtn"
+          class="bg-teal-500 text-white px-4 py-2 rounded"
+        >
           Next
         </button>
       </div>
     </div>
   </div>
-  <input type="hidden" name="university_name" id="universityNameInput" />
+  {% comment %} <input type="hidden" name="university_name"
+  id="universityNameInput" value=/>
   <input type="hidden" name="university_country" id="universityCountryInput" />
-  <input type="hidden" name="meal_plan" id="mealPlanInput" />
+  <input type="hidden" name="meal_plan" id="mealPlanInput" /> {% endcomment %}
 </form>
 
 <script>
@@ -41,6 +47,13 @@
   const circles = ["circle1", "circle2", "circle3"];
   const form = document.getElementById("multiStepForm");
   let currentStep = 0;
+
+  // Prevent Enter key from submitting the form
+  form.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  });
 
   function updateUI() {
     steps.forEach((id, idx) => {

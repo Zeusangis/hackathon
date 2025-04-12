@@ -38,7 +38,11 @@ def get_university(request):
 
 def submit_choices(request):
     if request.method == "POST":
+        print("POST")
         university = request.POST.get("university_name")
+        selected_plan = request.POST.get("selected_options")
         meal_plan = request.POST.get("meal_plan")
         print(university)
+        print(selected_plan)
+        print(meal_plan)
     return render(request, "wellBite/index.html")

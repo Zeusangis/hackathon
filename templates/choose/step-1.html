@@ -1,6 +1,6 @@
 {% include "./uni_heading.html" %}
 <div>
-  <form id="university" class="max-w-xl mx-auto mb-8">
+  <form id="university" action="{%url "get_university" %}" class="max-w-xl mx-auto mb-8">
     {% csrf_token %}
     <div class="flex">
       <div class="relative flex-grow">
@@ -17,32 +17,21 @@
         />
       </div>
       <button
-        type="submit"
+      id="university-search-button"
+        type="button"
         class="bg-teal-500 hover:bg-teal-600 text-white font-medium px-6 rounded-r-full transition-colors duration-300 flex items-center justify-center"
       >
         Search
       </button>
     </div>
   </form>
-
-  {% comment %}
-  <div class="max-w-xl mx-auto">
-    <a
-      href="#"
-      class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border-l-8 border-teal-600"
-    >
-      <div class="p-6">
-        <h2 class="text-xl font-bold text-gray-800 mb-1">
-          University of Cambridge
-        </h2>
-        <div class="flex items-center text-gray-500">
-          <span class="inline-block mr-2">🇬🇧</span>
-          <span>Cambridge, United Kingdom</span>
-        </div>
-      </div>
-    </a>
-  </div>
-  {% endcomment %}
+  <input
+    type="hidden"
+    name="university_name"
+    id="universityNameInput"
+    value=""
+  />
+  
   <div id="results" class="max-w-xl mx-auto h-[500px] overflow-y-scroll"></div>
   <div
     id="selected-info"
@@ -52,9 +41,12 @@
 <script>
   const searchInput = document.querySelector('input[name="query"]');
   const searchButton = document.querySelector(
-    "#university button[type=submit]"
+    "#university-search-button"
   );
   const resultsContainer = document.querySelector("#results");
+  const sendName = document.querySelector(
+    "#universityNameInput"
+  );
 
   let selectedUniversity = null;
 
@@ -112,12 +104,8 @@
             name: university.name,
             country: university.country,
           };
-          // Inside card.addEventListener("click", ...)
-          document.querySelector("#universityNameInput").value =
-            university.name;
-          document.querySelector("#universityCountryInput").value =
-            university.country;
-
+          sendName.value = selectedUniversity.name;
+        
           console.log("Selected university:", selectedUniversity);
         });
 

@@ -198,6 +198,7 @@
       </div>
     </div>
   </div>
+  <input type="hidden" name="meal_plan" id="mealPlanInput" value="" />
 </main>
 
 {% comment %}
@@ -286,10 +287,8 @@
         indicator.classList.remove("hidden");
 
         selectedOption = option;
-
-        // Update the display
-        selectedOptionsText.textContent = optionName;
-        selectedOptionsDisplay.classList.remove("hidden");
+        const mealPlanInput = document.getElementById("mealPlanInput");
+        mealPlanInput.value = optionId; // Set the value of the hidden input
 
         console.log("Selected meal plan:", optionName);
       });

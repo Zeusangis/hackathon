@@ -257,6 +257,12 @@
       </div>
     </div>
   </div>
+  <input
+    type="hidden"
+    name="selected_options"
+    id="selectedOptionsInput"
+    value=""
+  />
 </main>
 
 <script>
@@ -285,8 +291,11 @@
       } else {
         selectedOptions.splice(index, 1);
       }
-      document.querySelector("#mealPlanInput").value = optionId;
-
+      // Update hidden input field
+      const selectedOptionsInput = document.getElementById(
+        "selectedOptionsInput"
+      );
+      selectedOptionsInput.value = selectedOptions.join(",");
       console.log("Selected options:", selectedOptions);
     });
   });
