@@ -46,3 +46,9 @@ def submit_choices(request):
         print(selected_plan)
         print(meal_plan)
     return render(request, "wellBite/index.html")
+
+
+
+@login_required(login_url="login")
+def about(request):
+    return render(request, "wellBite/about.html")
