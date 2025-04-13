@@ -1,0 +1,211 @@
+
+{%extends "main.html" %} {% block content %}
+
+
+
+<div class="bg-white rounded-lg shadow-md p-4 max-w-3xl mx-auto nutrition-menu">
+  <!-- Date and Calorie Summary -->
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 border-b pb-3">
+    <h2 class="text-lg font-semibold text-gray-800">{{ daily_menu.date }}</h2>
+    <div class="flex flex-col items-end mt-2 sm:mt-0">
+      <div class="flex items-center">
+        <span class="text-sm font-medium text-gray-600 mr-2">Daily Total:</span>
+        <span class="text-lg font-bold text-emerald-600">{{ daily_menu.daily_total_calories }} cal</span>
+      </div>
+      <!-- Calorie Progress Bar -->
+      <div class="w-48 h-2 bg-gray-200 rounded-full mt-1 overflow-hidden">
+        <div id="calorieProgressBar" class="h-full bg-emerald-500 rounded-full" style="width: 0%"></div>
+      </div>
+      <div class="text-xs text-gray-500 mt-1">
+        <span id="caloriePercentage">0%</span> of daily target
+      </div>
+    </div>
+  </div>
+
+  <!-- View Toggle -->
+  <div class="flex justify-end mb-3">
+    <button id="viewToggleBtn" class="text-xs px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 transition-colors">
+      <span id="compactText" class="hidden">Compact View</span>
+      <span id="detailedText">Detailed View</span>
+    </button>
+  </div>
+
+  <!-- Meals Section -->
+  {% for meal in daily_menu.meals %}
+  <div class="meal-section mb-6 last:mb-0" data-meal="{{ meal.meal_type }}">
+    <!-- Meal Header -->
+    <div class="meal-header flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
+      <div class="flex items-center">
+        <svg class="meal-toggle-icon w-4 h-4 mr-2 text-gray-500 transform transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+        <h3 class="text-md font-semibold text-gray-700 capitalize">{{ meal.meal_type }}</h3>
+      </div>
+      <span class="text-sm font-medium px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full">
+        {{ meal.total_calories }} cal
+      </span>
+    </div>
+
+    <!-- Meal Items -->
+    <div class="meal-content grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[1000px] opacity-100 transition-all duration-300">
+      {% for item in meal.items %}
+      <div class="food-item flex bg-gray-50 rounded-lg overflow-hidden border border-gray-100 hover:shadow-md transition-all">
+        <!-- Food Image -->
+        <div class="w-24 h-24 flex-shrink-0 overflow-hidden">
+          <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+        </div>
+        
+        <!-- Food Details -->
+        <div class="flex-1 p-3">
+          <div class="flex justify-between items-start">
+            <h4 class="text-sm font-medium text-gray-800 mb-1">{{ item.name }}</h4>
+            <span class="text-xs font-bold text-emerald-600 ml-2">{{ item.calories }} cal</span>
+          </div>
+          
+          <!-- Nutrition Facts -->
+          <div class="nutrition-facts grid grid-cols-4 gap-1 mt-2">
+            <div class="text-xs">
+              <span class="block text-gray-500">Protein</span>
+              <span class="font-medium text-gray-700">{{ item.nutrition_facts.protein }}g</span>
+            </div>
+            <div class="text-xs">
+              <span class="block text-gray-500">Carbs</span>
+              <span class="font-medium text-gray-700">{{ item.nutrition_facts.total_carbohydrates }}g</span>
+            </div>
+            <div class="text-xs">
+              <span class="block text-gray-500">Fat</span>
+              <span class="font-medium text-gray-700">{{ item.nutrition_facts.total_fat }}g</span>
+            </div>
+            <div class="text-xs">
+              <span class="block text-gray-500">Sugar</span>
+              <span class="font-medium text-gray-700">{% if item.nutrition_facts.total_sugars %}{{ item.nutrition_facts.total_sugars }}{% else %}0{% endif %}g</span>
+            </div>
+          </div>
+          
+          <!-- Food Type Tags - Using JavaScript to process the type string -->
+          <div class="food-tags mt-2" data-types="{{ item.type }}">
+            <!-- Tags will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Calculate and set calorie percentage
+    const calorieProgressBar = document.getElementById('calorieProgressBar');
+    const caloriePercentage = document.getElementById('caloriePercentage');
+    const currentCalories = {{ daily_menu.daily_total_calories }};
+    const targetCalories = 2000; // You can make this dynamic if needed
+    
+    const percentage = Math.min(Math.round((currentCalories / targetCalories) * 100), 100);
+    calorieProgressBar.style.width = percentage + '%';
+    caloriePercentage.textContent = percentage + '%';
+    
+    // Toggle meal sections
+    const mealHeaders = document.querySelectorAll('.meal-header');
+    mealHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const mealSection = this.closest('.meal-section');
+        const mealContent = mealSection.querySelector('.meal-content');
+        const toggleIcon = this.querySelector('.meal-toggle-icon');
+        
+        if (mealContent.style.maxHeight === '0px') {
+          mealContent.style.maxHeight = '1000px';
+          mealContent.style.opacity = '1';
+          toggleIcon.style.transform = 'rotate(0deg)';
+        } else {
+          mealContent.style.maxHeight = '0px';
+          mealContent.style.opacity = '0';
+          toggleIcon.style.transform = 'rotate(-90deg)';
+        }
+      });
+    });
+    
+    // View toggle functionality
+    const viewToggleBtn = document.getElementById('viewToggleBtn');
+    const compactText = document.getElementById('compactText');
+    const detailedText = document.getElementById('detailedText');
+    const nutritionMenu = document.querySelector('.nutrition-menu');
+    
+    viewToggleBtn.addEventListener('click', function() {
+      const isDetailed = !compactText.classList.contains('hidden');
+      
+      if (isDetailed) {
+        // Switch to compact view
+        compactText.classList.add('hidden');
+        detailedText.classList.remove('hidden');
+        document.querySelectorAll('.nutrition-facts').forEach(el => {
+          el.classList.add('hidden');
+        });
+        document.querySelectorAll('.food-tags').forEach(el => {
+          el.classList.add('hidden');
+        });
+        document.querySelectorAll('.food-item').forEach(el => {
+          el.classList.add('py-1');
+        });
+      } else {
+        // Switch to detailed view
+        compactText.classList.remove('hidden');
+        detailedText.classList.add('hidden');
+        document.querySelectorAll('.nutrition-facts').forEach(el => {
+          el.classList.remove('hidden');
+        });
+        document.querySelectorAll('.food-tags').forEach(el => {
+          el.classList.remove('hidden');
+        });
+        document.querySelectorAll('.food-item').forEach(el => {
+          el.classList.remove('py-1');
+        });
+      }
+    });
+    
+    // Process food type tags
+    const foodTagsContainers = document.querySelectorAll('.food-tags');
+    foodTagsContainers.forEach(container => {
+      const typesString = container.getAttribute('data-types');
+      if (typesString) {
+        const types = typesString.split(',').map(type => type.trim());
+        types.forEach(type => {
+          if (type) {
+            const tagSpan = document.createElement('span');
+            tagSpan.className = 'inline-block text-xs px-1.5 py-0.5 bg-gray-200 text-gray-700 rounded mr-1 mb-1 hover:bg-emerald-100 hover:text-emerald-700 transition-colors cursor-pointer';
+            tagSpan.textContent = type;
+            container.appendChild(tagSpan);
+          }
+        });
+      }
+    });
+    
+    // Add pulse animation to new items (example)
+    // You can add a 'new-item' class to food items that are newly added
+    const newItems = document.querySelectorAll('.food-item.new-item');
+    newItems.forEach(item => {
+      item.style.animation = 'pulse-highlight 2s infinite';
+    });
+  });
+  
+  // Define the pulse animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulse-highlight {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    
+    .meal-content {
+      transition: max-height 300ms ease-in-out, opacity 300ms ease-in-out;
+    }
+    
+    .meal-toggle-icon {
+      transition: transform 300ms ease;
+    }
+  `;
+  document.head.appendChild(style);
+</script>
+{% endblock content%}
