@@ -423,7 +423,7 @@ Also Note one two or three worded food name so it can be good for image search.
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
-
+- Also make sure you provide different meals for breakfast lunch dinner and dont repeat meal
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
 
@@ -470,7 +470,7 @@ Also Note one two or three worded food name so it can be good for image search d
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
-
+- Also make sure you provide different meals for breakfast lunch dinner and dont repeat meal
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
 
