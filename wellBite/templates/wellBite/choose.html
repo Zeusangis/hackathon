@@ -9,15 +9,21 @@
       <div id="step1" class="px-6 py-8 bg-white rounded shadow-md">
         {%include "choose/step-1.html"%}
       </div>
-      <div id="step2" class="px-6 py-8 bg-white rounded shadow-md hidden">
+      <div
+        id="step2"
+        class="px-2 md:px-6 md:py-8 bg-white rounded shadow-md hidden"
+      >
         {% include "choose/step-2.html" %}
       </div>
-      <div id="step3" class="px-6 py-8 bg-white rounded shadow-md hidden">
+      <div
+        id="step3"
+        class="px-2 md:px-6 md:py-8 bg-white rounded shadow-md hidden"
+      >
         {%include "choose/step-3.html"%}
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="mt-8 flex justify-between">
+      <div class="px-4 mt-8 flex justify-between">
         <button
           type="button"
           id="prevBtn"
