@@ -25,6 +25,107 @@ gemini_api_key = os.getenv("GEMINI_API")
 genai.configure(api_key=gemini_api_key)
 
 
+
+
+
+
+food_names = {
+    "Saturday": [
+        "Grilled Black Bean Burger",
+        "Crispy Chicken Sandwich",
+        "Crispy Shoestring French Fries",
+        "LIZ'S FRIED CHICKEN",
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "Bacon (2 slice)",
+        "White Rice (1/2 cup)",
+        "Roasted Butternut Squash",
+        "Fresh Collard Greens",
+        "Fried Egg",
+        "Classic Cheese Pizza",
+        "Pepperoni Pizza",
+        "Spinach & Ricotta Pizza",
+        "Biscuit",
+        "Vanilla Iced Donut with Sprinkles",
+        "White Dinner Roll",
+        "Chocolate Chip Devil's Food Cake",
+        "Chocolate Chip Cookie",
+    ],
+    "Sunday": [
+        "Grilled Black Bean Burger",
+        "Crispy Chicken Sandwich",
+        "Crispy Shoestring French Fries",
+        "LIZ'S FRIED CHICKEN",
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "Bacon (2 slice)",
+        "White Rice (1/2 cup)",
+        "Roasted Butternut Squash",
+        "Fresh Collard Greens",
+        "Fried Egg",
+        "Classic Cheese Pizza",
+        "Pepperoni Pizza",
+        "Spinach & Ricotta Pizza",
+        "Biscuit",
+        "Vanilla Iced Donut with Sprinkles",
+        "White Dinner Roll",
+        "Chocolate Chip Devil's Food Cake",
+        "Chocolate Chip Cookie",
+    ],
+    "Monday": [
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "Hash Brown Potatoes",
+        "Bacon (2 slice)",
+        "Fried Egg",
+        "Cinnamon-Honey Granola",
+        "Chocolate Donut Bites",
+        "French Toast Sticks",
+        "Cinnamon Roll",
+    ],
+    "Tuesday": [
+        "Biscuit",
+        "Cranberry Orange Scone",
+        "Cinnamon-Sugar Donut",
+    ],
+    "Wednesday": [
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "O'Brien Potatoes",
+        "Pork Sausage Patty",
+        "Fried Egg",
+        "Cinnamon-Honey Granola",
+        "Biscuit",
+        "Cranberry-Peach Mini Muffin",
+        "Cinnamon Roll",
+    ],
+    "Thursday": [
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "Crispy Tater Tots",
+        "Smoked Maple Sausage",
+        "Fried Egg",
+        "Cinnamon-Honey Granola",
+        "Double Chocolate Chip Mini Muffin",
+        "Vanilla Iced Donut with Sprinkles",
+        "Waffles & Gravy",
+    ],
+    "Friday": [
+        "Grits (6 fl oz)",
+        "Scrambled Eggs",
+        "O'Brien Potatoes",
+        "Pork Sausage Patty",
+        "Ham, Egg & Cheese Bagel",
+        "Cinnamon-Honey Granola",
+        "Biscuit",
+        "Cherry-Topped Cinnamon Roll",
+        "Marshmallow Donut",
+    ],
+}
+
+
+
+
 @login_required(login_url="login")
 def index(request):
     return render(request, "wellBite/index.html")
@@ -193,10 +294,11 @@ def profile(request):
 upsplash = os.getenv("UNSPLASH")
 
 
+
 def image(food_item: str) -> str:
     ACCESS_KEY = upsplash
     url = "https://api.unsplash.com/search/photos"
-    params = {"query": food_item, "per_page": 1, "client_id": ACCESS_KEY}
+    params = {"query": food_item,"client_id": ACCESS_KEY,"content_filter": "high" }
 
     response = requests.get(url, params=params)
 
@@ -231,6 +333,7 @@ class FoodItem(TypedDict):
     calories: float
     type: str  # e.g., "protein", "carbohydrate"
     nutrition_facts: NutritionFacts  # ← added detailed breakdown
+    category:str
 
 
 class Meal(TypedDict):
@@ -243,26 +346,39 @@ class NutritionResponse(TypedDict):
     date: str  # Format: YYYY-MM-DD
     meals: List[Meal]
     daily_total_calories: float
-
+#  tools='google_search_retrieval'
 
 # Initialize the Gemini model with schema support
 model = GenerativeModel(
-    "gemini-1.5-flash",
+    "gemini-1.5-flash"
+    ,
     generation_config={
         "response_mime_type": "application/json",
         "response_schema": NutritionResponse,
     },
 )
+# model_text = GenerativeModel("gemini-1.5-flash")
+# def image_search(food):
+#     prompt=f"Generate a short one or two word small short food name so that it can be good for image search. The food name is {food}."
+#     response = model_text.generate_content(prompt)
+#     print(response.text)
+#     return response.text
+
 
 # Base prompt for the model
 
 
-def main(
-    diet: str, uni: str, target: int, height: float, weight: float, bmi: float
+def main_ulm(
+    diet: str,  target: int, height: float, weight: float, bmi: float
 ) -> NutritionResponse:
-    base_prompt = f"""
-You are a certified nutritionist. Go to the main page {uni} Dining website, generate a structured daily meal plan that meets the following criteria:
+    today = datetime.date.today()
 
+    # Get day name (e.g., "Monday", "Tuesday", etc.)
+    day_name = today.strftime("%A")
+    items=food_names[day_name]
+    base_prompt = f"""
+You are a certified nutritionist. Accoding to items available  in menu i provided here {items} , generate a structured daily meal plan that meets the following criteria:
+Also Note one two or three worded food name so it can be good for image search just use food item like instead of white rices just say rice and instead of liz fried chicken say fried. The food name should be infront like milk. Don't repeat item give something that can easily be found.
 - **Calorie Target:** The entire day's meals should sum up to {target} calories.
 - **User Details:** 
   - Height: {height} ( in inches )
@@ -274,14 +390,13 @@ You are a certified nutritionist. Go to the main page {uni} Dining website, gene
   - List food items for each meal along with their respective calorie values.
   - Categorize each food item by its nutrient type (e.g., protein, carbohydrate, fat, etc.).
   - Provide a subtotal of calories per meal.
-  - Use the website's menu to ensure the food items are available. and this is the most important part.
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
 
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
-Make sure the data is not older than the date {datetime.date.today()} or tomorrow. 
+
 """
 
     new_prompt = f"{base_prompt} Make a tailored diet plan for the '{diet}' diet plan."
@@ -299,13 +414,63 @@ Make sure the data is not older than the date {datetime.date.today()} or tomorro
         return {}
     for meals in data["meals"]:
         for meal in meals["items"]:
-            meal["image"] = f"{image(meal['name'])} food"
+            meal["image"] = image(meal['name'])
     data["date"] = datetime.date.today().strftime("%Y-%m-%d")
 
     return data
 
 
-@login_required(login_url="login")
+def main(
+    diet: str, uni: str, target: int, height: float, weight: float, bmi: float
+) -> NutritionResponse:
+    base_prompt = f"""
+You are a certified nutritionist. Accoding to tomrrow's menu  available on the {uni} Dining menu, generate a structured daily meal plan that meets the following criteria:
+Also Note one two or three worded food name so it can be good for image search The food name should be infront like milk. 
+- **Calorie Target:** The entire day's meals should sum up to {target} calories.
+- **User Details:** 
+  - Height: {height} ( in inches )
+  - Weight: {weight} ( in kilograms)
+  - BMI: {bmi}
+- **Meal Structure:** 
+  - 3 main meals: breakfast, lunch, and dinner.
+- **Meal Details:** 
+  - List food items for each meal along with their respective calorie values.
+  - Categorize each food item by its nutrient type (e.g., protein, carbohydrate, fat, etc.).
+  - Provide a subtotal of calories per meal.
+- **Output Format:** 
+  - The output must be valid JSON that strictly conforms to the provided JSON schema.
+  - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
+
+Follow these instructions carefully to create a precise, valid JSON response.
+Make sure that you validate all the information from the universitie's dining menu.
+
+"""
+
+    new_prompt = f"{base_prompt} Make a tailored diet plan for the '{diet}' diet plan."
+    response = model.generate_content(new_prompt)
+    response_json = json.loads(response.text)
+
+    try:
+        # Gemini may return `response.text` or `response.parts[0].text`
+        raw_json = (
+            response.text if hasattr(response, "text") else response.parts[0].text
+        )
+        data = json.loads(raw_json)
+    except Exception as e:
+        print("Error parsing JSON:", e)
+        return {}
+    for meals in data["meals"]:
+        for meal in meals["items"]:
+            meal["image"] = image(meal['name'])
+    data["date"] = datetime.date.today().strftime("%Y-%m-%d")
+
+    return data
+
+
+
+
+
+
 def nutrition_menu(request):
     user = request.user
     bmi_data = BodyMassIndex.objects.filter(user=user).first()
@@ -322,18 +487,14 @@ def nutrition_menu(request):
         university = request.POST.get("university_name")
         selected_plan = request.POST.get("selected_options")
         diet = request.POST.get("meal_plan")
-
-        meal_plan = main(university, selected_plan, diet, height, weight, bmi)
+        print(university)
+        if university =="University of Louisiana at Monroe":
+            print("GO")
+            meal_plan=main_ulm(selected_plan, diet, height, weight, bmi)
+        else:
+            print("Ready")
+            meal_plan = main(university, selected_plan, diet, height, weight, bmi)
     context = {
         "daily_menu": meal_plan,
     }
     return render(request, "wellBite/show.html", context=context)
-
-
-# or `response` depending on whether you want raw object or text
-
-
-# Guide use this function based on such parameter
-# !pip -q install google-generativeai newspaper3k
-# The data uses inches and kg
-# data=main(diet="Lactose Intolorant",uni="ULM",height=72,weight=60)
