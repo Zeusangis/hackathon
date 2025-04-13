@@ -14,12 +14,12 @@ SECRET_KEY = "django-insecure-t4ir36b_j+30r+=j$v6!b!na%art5g&bm&+al)^esw^f=$a)^x
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
 
-# ALLOWED_HOSTS = ["*"]
-
-# CSRF_TRUSTED_ORIGINS = ["https://wellbite.up.railway.app", "http://127.0.0.1:8000"]
-
-DEBUG = True
 ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = ["https://wellbite.up.railway.app", "http://127.0.0.1:8000"]
+
+# DEBUG = True
+# ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

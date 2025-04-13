@@ -25,10 +25,6 @@ gemini_api_key = os.getenv("GEMINI_API")
 genai.configure(api_key=gemini_api_key)
 
 
-
-
-
-
 food_names = {
     "Saturday": [
         "Grilled Black Bean Burger",
@@ -122,8 +118,6 @@ food_names = {
         "Marshmallow Donut",
     ],
 }
-
-
 
 
 @login_required(login_url="login")
@@ -294,11 +288,10 @@ def profile(request):
 upsplash = os.getenv("UNSPLASH")
 
 
-
 def image(food_item: str) -> str:
     ACCESS_KEY = upsplash
     url = "https://api.unsplash.com/search/photos"
-    params = {"query": food_item,"client_id": ACCESS_KEY,"content_filter": "high" }
+    params = {"query": food_item, "client_id": ACCESS_KEY, "content_filter": "high"}
 
     response = requests.get(url, params=params)
 
@@ -333,7 +326,7 @@ class FoodItem(TypedDict):
     calories: float
     type: str  # e.g., "protein", "carbohydrate"
     nutrition_facts: NutritionFacts  # ← added detailed breakdown
-    category:str
+    category: str
 
 
 class Meal(TypedDict):
@@ -346,12 +339,13 @@ class NutritionResponse(TypedDict):
     date: str  # Format: YYYY-MM-DD
     meals: List[Meal]
     daily_total_calories: float
+
+
 #  tools='google_search_retrieval'
 
 # Initialize the Gemini model with schema support
 model = GenerativeModel(
-    "gemini-1.5-flash"
-    ,
+    "gemini-1.5-flash",
     generation_config={
         "response_mime_type": "application/json",
         "response_schema": NutritionResponse,
@@ -369,13 +363,13 @@ model = GenerativeModel(
 
 
 def main_ulm(
-    diet: str,  target: int, height: float, weight: float, bmi: float
+    diet: str, target: int, height: float, weight: float, bmi: float
 ) -> NutritionResponse:
     today = datetime.date.today()
 
     # Get day name (e.g., "Monday", "Tuesday", etc.)
     day_name = today.strftime("%A")
-    items=food_names[day_name]
+    items = food_names[day_name]
     base_prompt = f"""
 You are a certified nutritionist. Accoding to items available  in menu i provided here {items} , generate a structured daily meal plan that meets the following criteria:
 Also Note one two or three worded food name so it can be good for image search just use food item like instead of white rices just say rice and instead of liz fried chicken say fried. The food name should be infront like milk. Don't repeat item give something that can easily be found.
@@ -414,7 +408,7 @@ Make sure that you validate all the information from the universitie's dining me
         return {}
     for meals in data["meals"]:
         for meal in meals["items"]:
-            meal["image"] = image(meal['name'])
+            meal["image"] = image(meal["name"])
     data["date"] = datetime.date.today().strftime("%Y-%m-%d")
 
     return data
@@ -461,14 +455,10 @@ Make sure that you validate all the information from the universitie's dining me
         return {}
     for meals in data["meals"]:
         for meal in meals["items"]:
-            meal["image"] = image(meal['name'])
+            meal["image"] = image(meal["name"])
     data["date"] = datetime.date.today().strftime("%Y-%m-%d")
 
     return data
-
-
-
-
 
 
 def nutrition_menu(request):
@@ -488,9 +478,9 @@ def nutrition_menu(request):
         selected_plan = request.POST.get("selected_options")
         diet = request.POST.get("meal_plan")
         print(university)
-        if university =="University of Louisiana at Monroe":
+        if university == "University of Louisiana at Monroe":
             print("GO")
-            meal_plan=main_ulm(selected_plan, diet, height, weight, bmi)
+            meal_plan = main_ulm(selected_plan, diet, height, weight, bmi)
         else:
             print("Ready")
             meal_plan = main(university, selected_plan, diet, height, weight, bmi)
