@@ -126,7 +126,10 @@ def profile(request):
                     "category": category,
                 },
             )
-
+            messages.success(
+                request,
+                "Profile updated successfully.",
+            )
             # Optional: use updated values for percent calc
             if bmi is not None:
                 if bmi < 18.5:
