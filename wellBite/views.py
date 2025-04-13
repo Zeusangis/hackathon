@@ -17,8 +17,12 @@ from typing_extensions import (
 from typing_extensions import TypedDict
 from typing import List, Literal
 from user.models import CustomUser, BodyMassIndex
+from dotenv import load_dotenv
 
-genai.configure(api_key="AIzaSyDrP2GybosJJtb4J62o13r_c5_Ka0qS3H8")
+load_dotenv()
+gemini_api_key = os.getenv("GEMINI_API")
+
+genai.configure(api_key=gemini_api_key)
 
 
 @login_required(login_url="login")
