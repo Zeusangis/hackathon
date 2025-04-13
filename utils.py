@@ -3,6 +3,8 @@
 import google.generativeai as genai
 from google.colab import userdata
 
+import datetime
+
 
 
 import json
@@ -25,6 +27,36 @@ from typing_extensions import TypedDict  # Must use this for compatibility with 
 
 from typing_extensions import TypedDict
 from typing import List, Literal
+
+
+
+import requests
+
+upsplash = "vmZIJ0FZObodo3VOhL9wIskJdHkNLHB6TuKUBMnJDdU"
+
+def image(food_item: str) -> str:
+    ACCESS_KEY = upsplash
+    url = "https://api.unsplash.com/search/photos"
+    params = {
+        "query": food_item,
+        "per_page": 1,
+        "client_id": ACCESS_KEY
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.status_code == 200:
+        data = response.json()
+        if data["results"]:
+            return data["results"][0]["urls"]["regular"]
+        else:
+            return "https://example.com/default-food.jpg"  # fallback if no result
+    else:
+        print("Failed to fetch images:", response.status_code)
+        return "https://example.com/error-image.jpg"  # fallback for errors
+
+
+
 
 
 class NutritionFacts(TypedDict, total=False):
@@ -76,7 +108,7 @@ model = GenerativeModel(
 
 
 
-def main(diet: str, uni: str, target: int, height: float, weight: float) -> NutritionResponse:
+def main(diet: str, uni: str, target: int, height: float, weight: float,bmi: float) -> NutritionResponse:
     base_prompt = (
         f"""
 You are a certified nutritionist. Using only the food items available on the {uni} Dining menu, generate a structured daily meal plan that meets the following criteria:
@@ -85,6 +117,7 @@ You are a certified nutritionist. Using only the food items available on the {un
 - **User Details:** 
   - Height: {height} ( in inches )
   - Weight: {weight} ( in kilograms)
+  - BMI: {bmi}
 - **Meal Structure:** 
   - 3 main meals: breakfast, lunch, and dinner.
 - **Meal Details:** 
@@ -114,7 +147,9 @@ Follow these instructions carefully to create a precise, valid JSON response.
         return {}
     for meals in data["meals"]:
       for meal in meals["items"]:
-        meal["image"] = image(meal["name"])
+        meal["image"] = f"{image(meal["name"])} food"
+    data["date"] = datetime.date.today().strftime("%Y-%m-%d")
+    
     return data
   # or `response` depending on whether you want raw object or text
 

@@ -9,4 +9,5 @@ urlpatterns = [
     path("about/", about, name="about"),
     path("profile/", profile, name="profile"),
     path("nutrition/", nutrition, name="nutrition"),
+    path("show/", nutrition_menu_view, name="nutrition"),
 ]
