@@ -23,17 +23,21 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="{%url "index" %}" class="text-teal-600 font-medium">Home</a>
-        <a
-        href="{%url "about" %}"
-          class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
-          >About</a
-        >
-        <a
-          href="#"
-          class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
-          >Contact</a
-        >
+        <a href="{% url 'index' %}"
+   class="{% if request.path == '/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
+   Home
+</a>
+
+<a href="{% url 'about' %}"
+   class="{% if request.path == '/about/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
+   About
+</a>
+
+<a href=""
+   class="{% if request.path == '/contact/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
+   Contact
+</a>
+
       </div>
 
       <!-- User Profile and Mobile Menu Icons -->
