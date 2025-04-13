@@ -8,7 +8,7 @@
 ![image](https://github.com/user-attachments/assets/d109d6e1-1d1c-4496-8039-864fcaf70bc0)
 
 ## 🚀 Try our Site
-![Visit Our Site](https://wellbite.up.railway.app/)
+[Visit Our Site](https://wellbite.up.railway.app/)
 
 # Create your feature branch
 git checkout -b feature-name
