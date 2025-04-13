@@ -4,6 +4,10 @@
 
 This project is a meal planning application designed for university students. It allows students to generate personalized meal plans based on the available dining hall menu. Users can filter options based on dietary preferences such as vegan, gluten-free, or specific goals like bulking.
 
+##Home Page
+![image](https://github.com/user-attachments/assets/d109d6e1-1d1c-4496-8039-864fcaf70bc0)
+![View Our Page](https://wellbite.up.railway.app/)
+
 ## Features
 
 - Generate meal plans based on the dining hall menu.
