@@ -53,6 +53,9 @@
   searchButton.addEventListener("click", async (event) => {
     event.preventDefault();
     const query = searchInput.value;
+    const nextBtn = document.getElementById("nextBtn");
+    document.getElementById("nextBtn").disabled = true;
+
 
     if (!query) return;
 
@@ -107,6 +110,8 @@
           sendName.value = selectedUniversity.name;
         
           console.log("Selected university:", selectedUniversity);
+          nextBtn.disabled = false;
+          nextBtn.classList.remove("disabled", "opacity-50", "cursor-not-allowed");
         });
 
         resultsContainer.appendChild(card);

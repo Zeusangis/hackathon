@@ -179,7 +179,7 @@ def profile(request):
     return render(request, "wellBite/profile.html", context)
 
 
-upsplash = "vmZIJ0FZObodo3VOhL9wIskJdHkNLHB6TuKUBMnJDdU"
+upsplash = os.getenv("UNSPLASH")
 
 
 def image(food_item: str) -> str:
@@ -309,6 +309,7 @@ def nutrition_menu(request):
         university = request.POST.get("university_name")
         selected_plan = request.POST.get("selected_options")
         diet = request.POST.get("meal_plan")
+
         meal_plan = main(university, selected_plan, diet, height, weight, bmi)
     context = {
         "daily_menu": meal_plan,
