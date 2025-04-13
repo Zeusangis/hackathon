@@ -16,4 +16,17 @@
 ```bash
 git clone https://github.com/Zeusangis/hackathon.git
 cd hackathon
-npm install
+npm install```
+
+##🛠️ Usage
+python manage.py runserver
+
+##🤝 Contributing
+
+
+##📄 License
+This project is licensed under the MIT License. Feel free to use and adapt!
+
+##📬 Contact
+📧 dipeshsharma9800@gmail.com
+🌐 https://unishkhadka.com.np/
