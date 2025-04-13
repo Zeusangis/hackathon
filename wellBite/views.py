@@ -261,7 +261,7 @@ def main(
     diet: str, uni: str, target: int, height: float, weight: float, bmi: float
 ) -> NutritionResponse:
     base_prompt = f"""
-You are a certified nutritionist. Using only the food items available on the {uni} Dining menu, generate a structured daily meal plan that meets the following criteria:
+You are a certified nutritionist. Go to the main page {uni} Dining website, generate a structured daily meal plan that meets the following criteria:
 
 - **Calorie Target:** The entire day's meals should sum up to {target} calories.
 - **User Details:** 
@@ -274,13 +274,14 @@ You are a certified nutritionist. Using only the food items available on the {un
   - List food items for each meal along with their respective calorie values.
   - Categorize each food item by its nutrient type (e.g., protein, carbohydrate, fat, etc.).
   - Provide a subtotal of calories per meal.
+  - Use the website's menu to ensure the food items are available. and this is the most important part.
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
 
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
-Make sure the data is not older than the date {datetime.date.today()} 
+Make sure the data is not older than the date {datetime.date.today()} or tomorrow. 
 """
 
     new_prompt = f"{base_prompt} Make a tailored diet plan for the '{diet}' diet plan."
