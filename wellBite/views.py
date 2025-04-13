@@ -30,7 +30,14 @@ def index(request):
     return render(request, "wellBite/index.html")
 
 
+@login_required(login_url="login")
 def choose(request):
+    bmi_data = BodyMassIndex.objects.filter(user=request.user).first()
+    if not bmi_data:
+        messages.warning(request, "Please fill out your profile first.")
+        return redirect(
+            "profile",
+        )
     university_api = "http://universities.hipolabs.com"
     universities = []
     q = request.GET.get("query")
@@ -44,6 +51,7 @@ def choose(request):
     return render(request, "wellBite/choose.html", {"universities": universities})
 
 
+@login_required(login_url="login")
 def get_university(request):
     university_api = "http://universities.hipolabs.com"
     q = request.GET.get("query")
@@ -296,6 +304,7 @@ Make sure the data is not older than the date {datetime.date.today()}
     return data
 
 
+@login_required(login_url="login")
 def nutrition_menu(request):
     user = request.user
     bmi_data = BodyMassIndex.objects.filter(user=user).first()

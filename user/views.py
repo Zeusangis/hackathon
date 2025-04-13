@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser as User
 from django.db import IntegrityError
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -31,14 +31,19 @@ def user_register(request):
         email = request.POST["email"]
         password = request.POST["password"]
         cpassword = request.POST["cpassword"]
+
         if cpassword != password:
-            messages.error(request, "Password doesn't match!")
+            messages.error(request, "Passwords do not match!")
             return redirect("register")
+
         try:
-            user = User.objects.create(full_name=name, email=email, password=password)
+            user = User(full_name=name, email=email)
+            user.set_password(password)  # Hash the password here
+            user.save()
         except IntegrityError:
             messages.error(request, "Email is already taken.")
             return redirect("register")
+
         login(request, user)
         return redirect("index")
     return render(request, "user/register.html")
