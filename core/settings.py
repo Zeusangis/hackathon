@@ -12,21 +12,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-t4ir36b_j+30r+=j$v6!b!na%art5g&bm&+al)^esw^f=$a)^x"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-
-# ALLOWED_HOSTS = ["*"]
-
-# CSRF_TRUSTED_ORIGINS = ["https://wellbite.up.railway.app", "http://127.0.0.1:8000"]
-
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
     "user",
-    # "jazzmin",
+    "jazzmin",
     "wellBite",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -38,7 +33,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
