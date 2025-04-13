@@ -269,6 +269,8 @@
   // Dietary options selection
   const dietaryOptions = document.querySelectorAll(".dietary-option");
   const selectedOptions = [];
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
   dietaryOptions.forEach((option) => {
     option.addEventListener("click", function () {
