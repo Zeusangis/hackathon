@@ -45,17 +45,17 @@ git commit -m "Add feature-name"
 # Push to your branch
 git push origin feature-name
 
-##🤝 Contributing
+#🤝 Contributing
 -Dipesh Sharma
 -Prajwal Ramtel
 -Shirshak Neupane
 -Unish Khadka
 
-##📄 License
+#📄 License
 This project is licensed under the MIT License. Feel free to use and adapt!
 
-## 🧃 Open a Pull Request!
+#🧃 Open a Pull Request!
 
-##📬 Contact
+#📬 Contact
 📧 dipeshsharma9800@gmail.com
 🌐 https://unishkhadka.com.np/
