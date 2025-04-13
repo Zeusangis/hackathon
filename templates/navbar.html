@@ -39,10 +39,10 @@
           </a>
 
           <a
-            href=""
-            class="{% if request.path == '/contact/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300"
+            href="{% url 'choose' %}"
+            class="{% if request.path == '/choose/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300"
           >
-            Contact
+            Generate
           </a>
         </div>
       </div>
@@ -103,15 +103,10 @@
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
               >Settings</a
             >
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
-              >Saved Recipes</a
-            >
             <div class="border-t border-gray-100"></div>
             <a
               href="{% url 'logout' %}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-300"
               >Sign out</a
             >
           </div>
