@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import google.generativeai as genai
 import datetime
 import json
-import dataclasses
+from django.contrib import messages
 import typing_extensions as typing
 import os
 import google.generativeai as genai
@@ -51,18 +51,6 @@ def get_university(request):
             universities = response.json()
 
     return JsonResponse(universities, safe=False)
-
-
-def submit_choices(request):
-    if request.method == "POST":
-        print("POST")
-        university = request.POST.get("university_name")
-        selected_plan = request.POST.get("selected_options")
-        meal_plan = request.POST.get("meal_plan")
-        print(university)
-        print(selected_plan)
-        print(meal_plan)
-    return render(request, "wellBite/index.html")
 
 
 @login_required(login_url="login")
@@ -187,11 +175,6 @@ def profile(request):
     return render(request, "wellBite/profile.html", context)
 
 
-@login_required(login_url="login")
-def nutrition(request):
-    return render(request, "wellBite/nutrition.html")
-
-
 upsplash = "vmZIJ0FZObodo3VOhL9wIskJdHkNLHB6TuKUBMnJDdU"
 
 
@@ -306,21 +289,27 @@ Make sure the data is not older than the date {datetime.date.today()}
     return data
 
 
-def nutrition_menu_view(request):
-    # Sample data (in a real app, this would come from your database)
-    meal_plan = main(
-        diet="bulking",
-        uni="university of louisiana at monroe",
-        target=2000,
-        height=68.0,  # inches
-        weight=70.0,  # kilograms
-        bmi=22.0,
-    )
+def nutrition_menu(request):
+    user = request.user
+    bmi_data = BodyMassIndex.objects.filter(user=user).first()
+    if not bmi_data:
+        messages.warning(request, "Please fill out your profile first.")
+        return redirect(
+            "profile",
+        )
+    height = bmi_data.height
+    weight = bmi_data.weight
+    bmi = bmi_data.bmi
+    if request.method == "POST":
+        print("POST")
+        university = request.POST.get("university_name")
+        selected_plan = request.POST.get("selected_options")
+        diet = request.POST.get("meal_plan")
+        meal_plan = main(university, selected_plan, diet, height, weight, bmi)
     context = {
         "daily_menu": meal_plan,
     }
-
-    return render(request, "wellBite/show.html", context)
+    return render(request, "wellBite/show.html", context=context)
 
 
 # or `response` depending on whether you want raw object or text

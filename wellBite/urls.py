@@ -5,9 +5,9 @@ urlpatterns = [
     path("", index, name="index"),
     path("choose/", choose, name="choose"),
     path("get_university/", get_university, name="get_university"),
-    path("submit_choices/", submit_choices, name="submit_choices"),
+    # path("submit_choices/", submit_choices, name="submit_choices"),
     path("about/", about, name="about"),
     path("profile/", profile, name="profile"),
-    path("nutrition/", nutrition, name="nutrition"),
-    path("show/", nutrition_menu_view, name="nutrition"),
+    # path("nutrition/", nutrition, name="nutrition"),
+    path("show/", nutrition_menu, name="show"),
 ]

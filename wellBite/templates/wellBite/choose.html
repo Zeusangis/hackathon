@@ -1,5 +1,5 @@
 {% extends "main.html" %} {% block content %}
-<form id="multiStepForm" method="POST" action="{% url 'submit_choices' %}">
+<form id="multiStepForm" method="POST" action="{% url 'show' %}">
   {% csrf_token %}
   <div class="bg-gray-100 min-h-screen py-10">
     <div class="w-1/2 mx-auto">
