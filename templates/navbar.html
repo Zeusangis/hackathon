@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center h-16">
       <!-- Logo/Brand -->
       <div class="flex items-center">
-        <a href="{%url "index" %}" class="flex items-center">
+        <a href="{%url 'index' %}" class="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-8 w-8 text-teal-500"
@@ -22,22 +22,29 @@
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="{% url 'index' %}"
-   class="{% if request.path == '/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
-   Home
-</a>
+      <div id="desktop-nav">
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="{% url 'index' %}"
+            class="{% if request.path == '/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300"
+          >
+            Home
+          </a>
 
-<a href="{% url 'about' %}"
-   class="{% if request.path == '/about/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
-   About
-</a>
+          <a
+            href="{% url 'about' %}"
+            class="{% if request.path == '/about/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300"
+          >
+            About
+          </a>
 
-<a href=""
-   class="{% if request.path == '/contact/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300">
-   Contact
-</a>
-
+          <a
+            href=""
+            class="{% if request.path == '/contact/' %}text-teal-600 font-semibold{% else %}text-gray-600 hover:text-teal-600{% endif %} transition-colors duration-300"
+          >
+            Contact
+          </a>
+        </div>
       </div>
 
       <!-- User Profile and Mobile Menu Icons -->
@@ -110,10 +117,10 @@
           </div>
         </div>
 
-        <!-- Mobile Menu - Simple Version without JS -->
+        <!-- Mobile Menu Button -->
         <div class="md:hidden">
-          <a
-            href="#"
+          <button
+            id="mobile-menu-button"
             class="text-gray-600 hover:text-teal-600 transition-colors duration-300"
           >
             <svg
@@ -130,21 +137,45 @@
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Mobile Navigation Links (Simplified without JS) -->
-    <div class="md:hidden pb-3 hidden">
-      <a href="#" class="block py-2 text-teal-600 font-medium">Home</a>
-      <a href="#" class="block py-2 text-gray-600">About</a>
-      <a href="#" class="block py-2 text-gray-600">Contact</a>
+    <!-- Mobile Navigation Links -->
+    <div id="mobile-nav" class="md:hidden pb-3 hidden">
+      <a
+        href="{% url 'index' %}"
+        class="{% if request.path == '/' %}block py-2 text-teal-600 font-medium{% else %}block py-2 text-gray-600 hover:text-teal-600{% endif %}"
+      >
+        Home
+      </a>
+      <a
+        href="{% url 'about' %}"
+        class="{% if request.path == '/about/' %}block py-2 text-teal-600 font-medium{% else %}block py-2 text-gray-600 hover:text-teal-600{% endif %}"
+      >
+        About
+      </a>
+      <a
+        href=""
+        class="{% if request.path == '/contact/' %}block py-2 text-teal-600 font-medium{% else %}block py-2 text-gray-600 hover:text-teal-600{% endif %}"
+      >
+        Contact
+      </a>
     </div>
   </div>
 </nav>
+
 <script>
   // Get references to the dropdown button and menu
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileNav = document.getElementById("mobile-nav");
+
+  // Toggle mobile menu when clicking the hamburger icon
+  mobileMenuButton.addEventListener("click", function () {
+    mobileNav.classList.toggle("hidden");
+  });
+
   const userDropdownButton = document.querySelector("[data-dropdown-toggle]");
   const userDropdownMenu = document.querySelector("[data-dropdown-menu]");
 
@@ -162,6 +193,24 @@
       !userDropdownMenu.contains(e.target)
     ) {
       userDropdownMenu.classList.add("hidden");
+    }
+
+    // Also close mobile menu when clicking outside (but not when clicking the toggle button)
+    if (
+      mobileMenuButton &&
+      mobileNav &&
+      !mobileMenuButton.contains(e.target) &&
+      !mobileNav.contains(e.target)
+    ) {
+      mobileNav.classList.add("hidden");
+    }
+  });
+
+  // Handle window resize - ensure mobile menu is hidden on larger screens
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 768) {
+      // md breakpoint
+      mobileNav.classList.add("hidden");
     }
   });
 </script>

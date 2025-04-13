@@ -2,7 +2,7 @@
 <form id="multiStepForm" method="POST" action="{% url 'show' %}">
   {% csrf_token %}
   <div class="bg-gray-100 min-h-screen py-10">
-    <div class="w-1/2 mx-auto">
+    <div class="md:w-1/2 mx-auto">
       <!-- Progress Steps -->
       {%include "choose/progress.html"%}
       <!-- Step Content -->
