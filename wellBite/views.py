@@ -56,9 +56,7 @@ def about(request):
 
 
 def calculate_bmi(height_cm, weight_kg):
-    """
-    Calculates BMI and returns a tuple (bmi, category).
-    """
+
     try:
         height_cm = float(height_cm)
         weight_kg = float(weight_kg)
