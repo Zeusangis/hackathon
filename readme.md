@@ -1,68 +1,19 @@
-# WellBite
+# 🥗 WellBite
 
-## Description
+## 📖 Description
 
-This project is a meal planning application designed for university students. It allows students to generate personalized meal plans based on the available dining hall menu. Users can filter options based on dietary preferences such as vegan, gluten-free, or specific goals like bulking.
+**WellBite** is a smart, student-focused meal planning application designed for university dining. Whether you're vegan, gluten-free, bulking, or just trying to eat better — **WellBite** helps you generate personalized meal plans straight from your campus dining hall's menu. 🍽️🎯
 
-##Home Page
-![image](https://github.com/user-attachments/assets/d109d6e1-1d1c-4496-8039-864fcaf70bc0)
-![View Our Page](https://wellbite.up.railway.app/)
+## ✨ Features
 
-## Features
+- 🧠 Smart Meal Plan Generator – Automatically builds meal plans using your dining hall's menu  
+- 🥦 Dietary Filters – Supports vegan, gluten-free, vegetarian, and more  
+- 🏋️ Goal Customization – Tailor meals to goals like bulking, cutting, or weight maintenance  
+- 💻 User-Friendly Interface – Smooth and intuitive navigation for all users  
 
-- Generate meal plans based on the dining hall menu.
-- Filter meals by dietary preferences (e.g., vegan, gluten-free).
-- Customize meal plans for specific goals (e.g., bulking, weight maintenance).
-- User-friendly interface for easy navigation.
+## 🚀 Installation
 
-## Installation
-
-1. Clone the repository:
-   ```bash
-   https://github.com/Zeusangis/hackathon.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd hackathon
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Usage
-
-1. Start the application:
-   ```bash
-   python manage.py runserver
-   ```
-2. Open your browser and navigate to `http://localhost:3000`.
-3. Input the dining hall menu and select your dietary preferences.
-4. Generate and view your personalized meal plan.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add feature-name"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-For questions or feedback, please contact [your-email@example.com].
+```bash
+git clone https://github.com/Zeusangis/hackathon.git
+cd hackathon
+npm install
