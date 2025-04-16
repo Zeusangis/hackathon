@@ -120,6 +120,10 @@ food_names = {
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
 @login_required(login_url="login")
 def index(request):
     return render(request, "wellBite/index.html")
@@ -288,22 +292,61 @@ def profile(request):
 upsplash = os.getenv("UNSPLASH")
 
 
+<<<<<<< HEAD
 def image(food_item: str) -> str:
     ACCESS_KEY = upsplash
     url = "https://api.unsplash.com/search/photos"
     params = {"query": food_item, "client_id": ACCESS_KEY, "content_filter": "high"}
+=======
 
-    response = requests.get(url, params=params)
+>>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
 
+import requests
+
+PEXELS_API_KEY = "82KAJg1R36cqr87TBcuySuXBt2EXNSHY5rJhRhE4uLPCL8G6eMnTiuGq"
+PEXELS_BASE_URL = "https://api.pexels.com/v1/search"
+
+def image(query):
+    headers = {
+        "Authorization": PEXELS_API_KEY
+    }
+    params = {
+        "query": query+" Food",
+        "per_page": 1  # Need at least 2 images
+    }
+    
+    response = requests.get(PEXELS_BASE_URL, headers=headers, params=params)
+    
     if response.status_code == 200:
         data = response.json()
-        if data["results"]:
-            return data["results"][0]["urls"]["regular"]
-        else:
-            return "https://example.com/default-food.jpg"  # fallback if no result
+        photos = data.get("photos", [])
+        
+        return photos[0]["src"]["original"]
+     
     else:
-        print("Failed to fetch images:", response.status_code)
-        return "https://example.com/error-image.jpg"  # fallback for errors
+        return f"Error {response.status_code}: {response.text}"
+
+# Example usage
+
+
+
+
+# def image(food_item: str) -> str:
+#     ACCESS_KEY = upsplash
+#     url = "https://api.unsplash.com/search/photos"
+#     params = {"query": food_item,"client_id": ACCESS_KEY,"content_filter": "high" }
+
+#     response = requests.get(url, params=params)
+
+#     if response.status_code == 200:
+#         data = response.json()
+#         if data["results"]:
+#             return data["results"][0]["urls"]["regular"]
+#         else:
+#             return "https://example.com/default-food.jpg"  # fallback if no result
+#     else:
+#         print("Failed to fetch images:", response.status_code)
+#         return "https://example.com/error-image.jpg"  # fallback for errors
 
 
 class NutritionFacts(TypedDict, total=False):
@@ -326,7 +369,11 @@ class FoodItem(TypedDict):
     calories: float
     type: str  # e.g., "protein", "carbohydrate"
     nutrition_facts: NutritionFacts  # ← added detailed breakdown
+<<<<<<< HEAD
     category: str
+=======
+
+>>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
 
 
 class Meal(TypedDict):
@@ -372,7 +419,7 @@ def main_ulm(
     items = food_names[day_name]
     base_prompt = f"""
 You are a certified nutritionist. Accoding to items available  in menu i provided here {items} , generate a structured daily meal plan that meets the following criteria:
-Also Note one two or three worded food name so it can be good for image search just use food item like instead of white rices just say rice and instead of liz fried chicken say fried. The food name should be infront like milk. Don't repeat item give something that can easily be found.
+Also Note one two or three worded food name so it can be good for image search.
 - **Calorie Target:** The entire day's meals should sum up to {target} calories.
 - **User Details:** 
   - Height: {height} ( in inches )
@@ -387,7 +434,7 @@ Also Note one two or three worded food name so it can be good for image search j
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
-
+- Also make sure you provide different meals for breakfast lunch dinner and dont repeat meal
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
 
@@ -419,7 +466,7 @@ def main(
 ) -> NutritionResponse:
     base_prompt = f"""
 You are a certified nutritionist. Accoding to tomrrow's menu  available on the {uni} Dining menu, generate a structured daily meal plan that meets the following criteria:
-Also Note one two or three worded food name so it can be good for image search The food name should be infront like milk. 
+Also Note one two or three worded food name so it can be good for image search descriptive 
 - **Calorie Target:** The entire day's meals should sum up to {target} calories.
 - **User Details:** 
   - Height: {height} ( in inches )
@@ -434,7 +481,7 @@ Also Note one two or three worded food name so it can be good for image search T
 - **Output Format:** 
   - The output must be valid JSON that strictly conforms to the provided JSON schema.
   - Do not include any brackets, personal comments, or extraneous text outside of the JSON structure.
-
+- Also make sure you provide different meals for breakfast lunch dinner and dont repeat meal
 Follow these instructions carefully to create a precise, valid JSON response.
 Make sure that you validate all the information from the universitie's dining menu.
 
