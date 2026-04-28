@@ -120,10 +120,8 @@ food_names = {
 }
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
+
 @login_required(login_url="login")
 def index(request):
     return render(request, "wellBite/index.html")
@@ -292,14 +290,7 @@ def profile(request):
 upsplash = os.getenv("UNSPLASH")
 
 
-<<<<<<< HEAD
-def image(food_item: str) -> str:
-    ACCESS_KEY = upsplash
-    url = "https://api.unsplash.com/search/photos"
-    params = {"query": food_item, "client_id": ACCESS_KEY, "content_filter": "high"}
-=======
 
->>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
 
 import requests
 
@@ -369,11 +360,7 @@ class FoodItem(TypedDict):
     calories: float
     type: str  # e.g., "protein", "carbohydrate"
     nutrition_facts: NutritionFacts  # ← added detailed breakdown
-<<<<<<< HEAD
     category: str
-=======
-
->>>>>>> 5a88b56ce5e357e069ac63942110c15dfe688dca
 
 
 class Meal(TypedDict):
